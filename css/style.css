@@ -652,69 +652,118 @@ footer {
 .radio-group label{font-weight:normal}#rsvpForm 
             button{margin-top:20px}
 
+/* ===== Timeline Section Styles ===== */
+.timeline-section {
+    padding: 60px 20px;
+    position: relative;
+}
+
+.timeline-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+/* Línea horizontal centrada (desktop/tablet) */
+.timeline-line {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-light), var(--primary-blue), var(--accent-light));
+    border-radius: 2px;
+    z-index: 1;
+}
+
+.timeline-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* Línea vertical desde la línea hasta el ícono */
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    top: 63px;
+    left: 50%;
+    width: 2px;
+    height: 30px;
+    background: var(--primary-blue);
+    transform: translateX(-50%);
+}
+
+/* Ícono */
+.timeline-icon {
+    width: 60px;
+    height: 60px;
+    background-color: var(--primary-blue);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 93px;
+    box-shadow: 0 4px 12px rgba(40, 75, 103, 0.3);
+    transition: all 0.3s ease;
+    z-index: 3;
+}
+
+.timeline-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(40, 75, 103, 0.4);
+}
+
+.timeline-icon svg {
+    width: 30px;
+    height: 30px;
+    color: white;
+}
+
+/* Cuadro de texto */
+.timeline-content {
+    margin-top: 10px;
+    background-color: var(--accent-soft);
+    padding: 8px 10px;
+    border-radius: 15px;
+    border: 2px solid var(--accent-light);
+    box-shadow: 0 4px 12px rgba(40, 75, 103, 0.1);
+    transition: all 0.3s ease;
+    text-align: center;
+    width: 100%;
+    max-width: 160px;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(40, 75, 103, 0.2);
+}
+
+.timeline-content h3 {
+    margin: 0 0 8px 0;
+    color: var(--primary-blue);
+    font-size: 1.1em;
+    font-weight: bold;
+    font-family: 'Playfair Display', cursive;
+}
+
+.timeline-time {
+    color: var(--text-light);
+    font-size: 0.9em;
+    font-weight: 600;
+}
 
 /* ----- RESPONSIVE DESIGN ----- */
-@media (max-width: 768px) {
-    /* Contenedor del texto hero */
-    .hero-text {
-    position: absolute;
-    top: 70%;          /* baja el bloque entero */
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    text-align: center;
-    }
-    /* --- Ajustes de la hero-section --- */
-    .hero-section {
-        /* Si deseas que la imagen se vea completa */
-        padding-top: 0rem;
-        background-position: top center;
-    }
-
-    .hero-text .names {
-        font-size: 4.2rem;   /* Tamaño razonable para móvil */
-        line-height: 1.1;
-    }
-
-    .hero-text .names-big {
-        font-size: 4.5rem;   /* Tamaño razonable para móvil */
-        line-height: 1.1;
-    }
-    .hero-text .story-text {
-        font-size: 1.2rem;   /* Tamaño razonable para móvil */
-        line-height: 1.2;
-    }
-    .hero-text p {
-        font-size: 1.2rem;   /* Reduce el subtítulo */
-        margin: 0 10px;      /* Evita que toque los bordes */
-    }
-
-    /* Espacio extra para separar del borde superior si se desea */
-    .hero-section {
-        padding-top: 3rem;
-        padding-bottom: 3rem;
-    }
-
-    /* Resto de ajustes que ya tenías */
-    .section-title { font-size: 2.2em; }
-    .event-details { grid-template-columns: 1fr; }
-    .countdown-inline-container { font-size: 1.5em; }
-
-    /* Rosas más pequeñas para no tapar */
-    .section::before,
-    .section::after {
-        width: 150px;
-        height: 150px;
-    }
-    .vertical-roses::before,
-    .vertical-roses::after {
-        width: 100px;
-    }
-    .section-title { font-size: 2.2em; }
-    .event-details { grid-template-columns: 1fr; }
-    .countdown-container { flex-direction: column; gap: 0; }
-    .countdown-inline-container { font-size: 1.5em; }
-}
 /* Rosa en la esquina superior izquierda */
 .section::before {
     top: 50px;
@@ -733,15 +782,110 @@ footer {
 }
 /* ----- MEDIA QUERIES ----- */
 @media (max-width: 768px) {
-    /* Tamaño de las rosas para dispositivos móviles */
+    /* ===== CRONOGRAMA: LÍNEA CENTRADA AL 25 % ===== */
+    .timeline-container {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: 0;
+    }
+
+    .timeline-line {
+        left: 25%;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        height: 100%;
+        background: linear-gradient(180deg, var(--accent-light), var(--primary-blue), var(--accent-light));
+        transform: translateX(-50%);
+    }
+
+    .timeline-item {
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 60px;
+        position: relative;
+        width: 100%;
+        max-width: 400px;
+        padding: 0 20px;
+    }
+
+    /* Línea horizontal desde la línea vertical al ícono */
+    .timeline-item::before {
+        top: 50%;
+        left: 25%;
+        width: calc(25% - 10px);
+        height: 2px;
+        transform: translateY(-50%);
+    }
+
+    /* Ícono 2/3 más grande y centrado en el 25 % */
+    .timeline-icon {
+        position: absolute;
+        left: 25%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        margin: 0;
+        width: 84px; /* 50px * 1.67 */
+        height: 84px;
+    }
+
+    .timeline-icon svg {
+        width: 42px;
+        height: 42px;
+    }
+
+    /* Cuadro de texto a la derecha */
+    .timeline-content {
+        margin-left: calc(25% + 52px);
+        width: 100%;
+        max-width: none;
+        min-height: 60px;
+        text-align: center;
+    }
+
+    /* ===== RESTO DE TUS AJUSTES YA EXISTENTES (sin cambios) ===== */
+    .hero-text {
+        position: absolute;
+        top: 70%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        text-align: center;
+    }
+
+    .hero-text .names {
+        font-size: 4.2rem;
+    }
+
+    .hero-text .names-big {
+        font-size: 4.5rem;
+    }
+
+    .hero-text .story-text {
+        font-size: 1.2rem;
+    }
+
+    .section-title {
+        font-size: 2.2em;
+    }
+
+    .event-details {
+        grid-template-columns: 1fr;
+    }
+
+    .countdown-inline-container {
+        font-size: 1.5em;
+    }
+
     .section::before,
     .section::after {
-        width: 300px;
-        height: 300px;
+        width: 150px;
+        height: 150px;
     }
+
     .vertical-roses::before,
     .vertical-roses::after {
-    width: 100px;
+        width: 100px;
     }
 }
 
@@ -769,15 +913,47 @@ footer {
     border-radius: 5px;
 }
 
+
+/* Mobile Styles - Vertical Timeline */
+
 @media (max-width: 480px) {
-    /* Tamaño de las rosas para teléfonos inteligentes */
+    /* ===== CRONOGRAMA: ÍCONO AÚN MÁS PEQUEÑO PERO 2/3 MÁS GRANDE ===== */
+    .timeline-item {
+        max-width: 320px;
+    }
+
+    .timeline-icon {
+        width: 75px; /* 45px * 1.67 */
+        height: 75px;
+    }
+
+    .timeline-icon svg {
+        width: 38px;
+        height: 38px;
+    }
+
+    .timeline-content {
+        margin-left: calc(25% + 47px);
+        padding: 12px 15px;
+    }
+
+    .timeline-content h3 {
+        font-size: 0.95em;
+    }
+
+    .timeline-time {
+        font-size: 0.8em;
+    }
+
+    /* ===== RESTO DE TUS AJUSTES YA EXISTENTES (sin cambios) ===== */
     .section::before,
     .section::after {
         width: 150px;
         height: 150px;
     }
+
     .vertical-roses::before,
     .vertical-roses::after {
-    width: 100px;
+        width: 100px;
     }
 }
